@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>猫头鹰商超客流分析</title>
+    <script type="text/javascript" src="script/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="script/Chart.min.js"></script>
+    <script type="text/javascript" src="script/script.js"></script>
+    <link rel="stylesheet" href="style/main.css"/>
+</head>
+<body>
+<header>
+    <h1>猫头鹰商超客流分析</h1>
+    <nav>
+        <ul>
+            <li id="day"><a href="day.html">按日统计</a></li>
+            <li id="week"><a href="week.html">按周统计</a></li>
+            <li id="month" class="selected"><a href="month.html">按月统计</a></li>
+        </ul>
+    </nav>
+</header>
+<section class="clear">
+    <h2>客流量(2015年8月3日星期一 ~ 2015年8月9日星期日)</h2>
+
+    <div id="time_account">
+        <dl class="width-40-percent">
+            <dt class="green">
+            <h1>今日</h1>
+            <i>(0点至现在)</i>
+            </dt>
+            <dd class="total-current">0人</dd>
+        </dl>
+        <dl class="width-40-percent">
+            <dt class="blue">
+            <h1>昨日</h1>
+            <i></i>
+            </dt>
+            <dd class="total-last">0人</dd>
+        </dl>
+    </div>
+</section>
+<div class="clear"></div>
+<div class="chart-container">
+    <div class="tab-container">
+        <div class="tab clearfix width-40-percent left ">
+            <i class="triangle"></i>
+
+            <div class="title">今日</div>
+        </div>
+        <div class="tab clearfix width-40-percent right">
+            <i class="triangle"></i>
+
+            <div class="title">昨日</div>
+        </div>
+        <span class="clear clearfix"></span>
+    </div>
+    <div id="chart">
+        <canvas id="canvas" height="450" width="600"></canvas>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+
+        var CountJson = {
+            "code": 200,
+            "status": "request_success",
+            "message": [],
+            "data": [
+                {
+                    "TOTAL_COUNT": 1,
+                    "DATE_TIME": "2015-08-15"
+                },
+                {
+                    "TOTAL_COUNT": 54,
+                    "DATE_TIME": "2015-08-22"
+                },
+                {
+                    "TOTAL_COUNT": 90,
+                    "DATE_TIME": "2015-08-23"
+                }
+            ]
+        }
+
+         var client = "wikkit12345"; // 初始的客户id
+         var company = "1"  //初始的公司id
+         var url = "http://112.74.129.243:8080/api/info/get?client_id=" + client + "&type=month&company_id=" + company; //获取接口地址
+         $.getJSON(url, function (data) {
+
+             CountJson = data;
+             var datasCurrent = [];
+             var datasLast = [];
+
+             var ChartJson = loadMonthDayData(CountJson.data);
+             $(".total-current").html(ChartJson.totalCurrent + "人");
+             $(".total-last").html(ChartJson.totalLast + "人");
+             var lineChartData = {
+                 labels: ChartJson.Labels,
+                 datasets: [
+                     {
+                         label: ChartJson.labelCurrent,
+                         fillColor: "rgba(0,212,135,0.2)",
+                         strokeColor: "rgba(0,212,135,1)",
+                         pointColor: "rgba(0,212,135,1)",
+                         pointStrokeColor: "#fff",
+                         pointHighlightFill: "#fff",
+                         pointHighlightStroke: "rgba(0,212,135,1)",
+                         data: ChartJson.datasCurrent
+                     },
+                     {
+                         label: ChartJson.labelLast,
+                         fillColor: "rgba(0,184,212,0.2)",
+                         strokeColor: "rgba(0,184,212,1)",
+                         pointColor: "rgba(0,184,212,1)",
+                         pointStrokeColor: "#fff",
+                         pointHighlightFill: "#fff",
+                         pointHighlightStroke: "rgba(0,184,212,1)",
+                         data: ChartJson.datasLast
+                     }
+                 ]
+             }
+
+
+             var ctx = $("#canvas").get(0).getContext("2d");
+             window.myLine = new Chart(ctx).Line(lineChartData, {
+                 responsive: true
+             });
+
+             $('.tab').click(function () {
+                 $(this).addClass("selected").siblings().removeClass("selected");
+                 if ($(this).hasClass("left")) {
+                     lineChartData = {
+                         labels: ChartJson.Labels,
+                         datasets: [
+                             {
+                                 label: ChartJson.labelCurrent,
+                                 fillColor: "rgba(0,212,135,0.2)",
+                                 strokeColor: "rgba(0,212,135,1)",
+                                 pointColor: "rgba(0,212,135,1)",
+                                 pointStrokeColor: "#fff",
+                                 pointHighlightFill: "#fff",
+                                 pointHighlightStroke: "rgba(0,212,135,1)",
+                                 data: ChartJson.datasCurrent
+                             }
+                         ]
+                     }
+                 }
+                 if ($(this).hasClass("right")) {
+                     lineChartData = {
+                         labels: ChartJson.Labels,
+                         datasets: [
+                             {
+                                 label: ChartJson.labelLast,
+                                 fillColor: "rgba(0,184,212,0.2)",
+                                 strokeColor: "rgba(0,184,212,1)",
+                                 pointColor: "rgba(0,184,212,1)",
+                                 pointStrokeColor: "#fff",
+                                 pointHighlightFill: "#fff",
+                                 pointHighlightStroke: "rgba(0,184,212,1)",
+                                 data: ChartJson.datasLast
+                             }
+                         ]
+                     }
+                 }
+                 ctx = $("#canvas").get(0).getContext("2d");
+                 window.myLine = new Chart(ctx).Line(lineChartData, {
+                     responsive: true
+                 });
+             });
+             $("#time_account .green h1").html("本月");
+             $("#time_account .blue h1").html("上月");
+             $("#time_account .green i").html("(本月1号至今)");
+
+             $(".tab-container .left .title").html("本月");
+             $(".tab-container .right .title").html("上月");
+             //d = new Date();
+             //timePeriod = FormatDate(AddMonths(d, -1), "yyyy年MM月dd日WW") + " ~ " + FormatDate(new Date(), "yyyy年MM月dd日WW");
+             d = firstDayInPreviousMonth(new Date());
+             timePeriod = FormatDate(d, "yyyy年MM月dd日") + " ~ " + FormatDate(new Date(), "yyyy年MM月dd日");
+             $("section h2").html("客流量(" + timePeriod + ")");
+             $(".total-current").html(ChartJson.totalCurrent + "人");
+             $(".total-last").html(ChartJson.totalLast + "人");
+
+         });
+
+        function firstDayInPreviousMonth(yourDate) {
+            return new Date(yourDate.getFullYear(), yourDate.getMonth() - 1, 1);
+        }
+
+
+    });
+
+</script>
+
+</body>
+</html>

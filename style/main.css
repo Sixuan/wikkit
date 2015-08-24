@@ -1,0 +1,319 @@
+@charset "utf-8";
+/* CSS Document */
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address,
+del, dfn, em, img, q,
+small, strike, strong, sub, sup,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+}
+
+html {
+    overflow: -moz-scrollbars-vertical;
+}
+
+b, strong {
+    font-weight: 700;
+}
+
+img {
+    vertical-align: top;
+    -ms-interpolation-mode: bicubic;
+}
+
+input {
+    outline: none;
+}
+
+input[type="text"] {
+    border: 1px solid #ccc;
+    height: 16px;
+    padding: 5px;
+}
+
+input[type="checkbox"] {
+    margin: 0;
+    padding: 0;
+    vertical-align: inherit;
+    margin-right: 5px;
+}
+
+select {
+    height: 24px;
+    line-height: 24px;
+}
+
+textarea {
+    width: 100%;
+    resize: vertical;
+}
+
+li {
+    list-style: none;
+}
+
+i {
+    font-style: normal !important;
+}
+
+body, .ft, input, select, option, textarea, button {
+    font-family: 'Microsoft yahei', '微软雅黑', Tahoma, Verdana, Arial, sans-serif;
+    font-size: 14px;
+    color: #555;
+}
+
+.whiteBg {
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 19px;
+}
+
+.ft_s {
+    font-family: tahoma, arial, "Hiragino Sans GB", \5b8b\4f53;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.wMain {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+    color: #666;
+}
+
+.clearfix:after, .wMain:after {
+    content: ".";
+    display: block;
+    height: 0;
+    line-height: 0;
+    font-size: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix {
+    display: block;
+}
+
+.clear {
+    clear: both;
+}
+
+.fl {
+    float: left !important;
+}
+
+.fr {
+    float: right !important;
+}
+
+.hide {
+    display: none !important;
+}
+
+/** Custom Styles **/
+body {
+    background: #f4f4f4;
+
+}
+
+.green {
+    background: #00d487;
+}
+
+.blue {
+    background: #00b8d4;
+
+}
+
+header {
+    width: 1020px;
+    height: 270px;
+    margin: 0 auto;
+    background: url('../images/head_bg.jpg') no-repeat;
+    position: relative;
+    text-align: center;
+    color: #fff;
+}
+
+header h1 {
+    font-weight: 800;
+    font-family: simsun;
+    font-size: 3em;
+    padding-top: 10%;
+}
+
+nav {
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+    left: 10%;
+    text-align: center;
+}
+
+nav ul li {
+    width: 30%;
+    float: left;
+    text-align: center;
+    font-size: 2em;
+    line-height: 3em;
+    border-bottom: 10px transparent solid;
+}
+nav a {color:#fff;}
+nav .selected {
+    font-weight: bold;
+    border-bottom: 10px #ffd304 solid;
+}
+
+section {
+    margin: 0 auto;
+    text-align: center;
+    width: 1020px;
+}
+
+section h2 {
+    color: #444444;
+    font-size: 1.4em;
+    line-height: 4em;
+}
+
+#time_account {
+    width: 90%;
+    margin: 0 auto;
+    padding-left: 4%;
+
+}
+
+#time_account dl {
+    display: inline-block;
+    margin: 0% 2% 2% 4%;
+    float: left;
+    border: 1px solid #e5e5e5;
+}
+
+.width-40-percent {
+    width: 40%;
+}
+
+#time_account dl dt {
+    color: #fff;
+    padding: 0.7em;
+
+}
+
+#time_account dl dt h1 {
+    font-size: 1.8em;
+    line-height: 1.8em;
+}
+
+#time_account dl dt i {
+    color: #fff;
+    font-size: 0.6em;
+    display: inline-block;
+}
+
+#time_account dd {
+    background: #fff;
+    font-size: 3.2em;
+    font-family: simsun;
+    font-weight: 800;
+    color: #848484;
+    line-height: 2.4em;
+}
+
+.chart-container {
+    background: #fff;
+    width: 90%;
+    margin-top: 2.5em;
+    padding: 3em 5%;
+    min-height: 500px;
+}
+
+.tab-container {
+    margin: 0 auto;
+    width: 800px;
+    padding-left:2%;
+}
+
+.tab-container .selected {
+    background-color: #455a64;
+    color: #fff;
+}
+
+.tab {
+    float: left;
+    position: relative;
+    padding: 6px 20px;
+    border: 1px solid #e7e7e7;
+    background: #fafafa;
+    border-radius: 3px;
+    text-align: center;
+    cursor: pointer;
+    width:42%;
+}
+
+.tab .title {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    font-size: 1.4em;
+
+}
+.tab-container .selected .triangle {
+    position: absolute;
+    top: 50%;
+    margin-top: -8px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    line-height: 0;
+    font-size: 0;
+    border-bottom: 8px solid #fafafa;
+    border-top: 8px solid #fafafa;
+    z-index: 1;
+}
+.tab-container .triangle{
+    display:none;
+}
+.left .triangle {
+    left: auto;
+    right: -8px;
+    border-right: none;
+    border-left: 8px solid #455a64;
+    z-index: 1;
+}
+
+.right .triangle {
+    left: -8px;
+    right: auto;
+    border-right: 8px solid #455a64;
+    border-left: none;
+    z-index: 1;
+}
+.tab-container:after {
+    clear:both;
+}
+
+#chart{
+margin:30px auto;
+    width:35%;
+}

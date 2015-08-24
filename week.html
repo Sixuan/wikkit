@@ -25,14 +25,14 @@
     <div id="time_account">
         <dl class="width-40-percent">
             <dt class="green">
-            <h1>今日</h1>
-            <i>(0点至现在)</i>
+            <h1>本周</h1>
+            <i></i>
             </dt>
             <dd class="total-current">0人</dd>
         </dl>
         <dl class="width-40-percent">
             <dt class="blue">
-            <h1>昨日</h1>
+            <h1>上周</h1>
             <i></i>
             </dt>
             <dd class="total-last">0人</dd>
@@ -197,7 +197,7 @@
             $(".tab-container .left .title").html("本周");
             $(".tab-container .right .title").html("上周");
             d = getMonday(new Date());
-            console.log(d);
+            //console.log(d);
             timePeriod = FormatDate(AddDays(d, -7), "yyyy年MM月dd日WW") + " ~ " + FormatDate(new Date(), "yyyy年MM月dd日WW");
             $("section h2").html("客流量(" + timePeriod + ")");
             $(".total-current").html(ChartJson.totalCurrent + "人");
@@ -205,13 +205,6 @@
 
         });
 
-
-        function getMonday(d) {
-            d = new Date(d);
-            var day = d.getDay(),
-                    diff = d.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
-            return new Date(d.setDate(diff));
-        }
     });
 
 </script>

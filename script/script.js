@@ -133,6 +133,15 @@ function getDaysInMonth(month, year) {
     return days;
 }
 
+
+
+function getMonday(d) {
+    d = new Date(d);
+    var day = d.getDay(),
+        diff = d.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
+    return new Date(d.setDate(diff));
+}
+
 function loadWeekData(data) {
     var Labels = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"];
     var datasCurrent = [];
@@ -141,14 +150,14 @@ function loadWeekData(data) {
     var totalLast = 0;
     for (var i = 0; i < Labels.length; i++) {
         $.each(data, function (n, value) {
-
-            if (FullDate(AddDays(new Date(), (i - Labels.length) + 1), "yyyy-MM-dd") == value.DATE_TIME) {
-                datasCurrent.push(value.TOTAL_COUNT);
-                totalCurrent += value.TOTAL_COUNT;
-            }
-            else if (FullDate(AddDays(new Date(), (i - Labels.length) - 6), "yyyy-MM-dd") == value.DATE_TIME) {
+            var this_monday = getMonday(new Date());
+            if (FullDate(AddDays(this_monday, (i - Labels.length)), "yyyy-MM-dd") == value.DATE_TIME) {
                 datasLast.push(value.TOTAL_COUNT);
                 totalLast += value.TOTAL_COUNT;
+            }
+            else if (FullDate(AddDays(this_monday, i + 7), "yyyy-MM-dd") == value.DATE_TIME) {
+                datasCurrent.push(value.TOTAL_COUNT);
+                totalCurrent += value.TOTAL_COUNT;
             }
         });
         if (i == datasCurrent.length) {
@@ -159,10 +168,11 @@ function loadWeekData(data) {
         }
 
     }
-/*
-    console.log(datasCurrent);
-    console.log(datasLast);
-    console.log(totalCurrent);
+
+    //console.log(datasCurrent);
+    //console.log(totalCurrent);
+    /*   console.log(datasLast);
+
     console.log(totalLast);
 */
     var retJson = {
@@ -205,9 +215,11 @@ function loadMonthDayData(data) {
     for(var i= 0; i < last_month_day.length; i++){
         LastLabels.push(last_month_day[i].getDate() + ' 日');
     }
+/*
 
     console.log(Labels);
     console.log(LastLabels);
+*/
 
 
 

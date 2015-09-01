@@ -165,12 +165,12 @@ nav {
     position: absolute;
     bottom: 0;
     width: 90%;
-    left: 10%;
+    left: 5%;
     text-align: center;
 }
 
 nav ul li {
-    width: 30%;
+    width: 25%;
     float: left;
     text-align: center;
     font-size: 2em;

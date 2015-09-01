@@ -116,6 +116,99 @@ function loadDayData(data) {
     return retJson;
 }
 
+function loadRealtimeData(data) {
+    var infoX = [];
+    var infoY = [];
+    var img;
+    for (var i = 1; i <= 18; i++) {
+        $.each(data, function (n, value) {
+            infoX.push(value.POSITION_X )
+            infoY.push(value.POSITION_Y )
+        });
+    }
+    img.push(value.SCENE.IMG)
+    var retJson = {
+        "Labels": infoX,
+        "Colors": infoY,
+        "Img": img,
+    };
+    return retJson;
+}
+
+function loadDeviceData(data) {
+    var Labels = ["#A", "#B", "#C", "#D", "#E", "#F", "#G", "#H", "#I", "#J", "#K", "#L", "#M", "#N", "#O"
+        ];
+    var deviceID = [];
+    var deviceCapture = [];
+    var areaCapture = [];
+    var Colors = [];
+    for (var i = 1; i <= 18; i++) {
+        $.each(data, function (n, value) {
+            deviceID.push(value.DEVICE_ID )
+            deviceCapture.push(value.TOTAL_COUNT )
+        });
+    }
+
+    areaCapture[0]=deviceCapture[0] ;  //A device 1
+    areaCapture[1]=deviceCapture[2] ;  //B device 3
+    areaCapture[2]=deviceCapture[4] ;  //C device 5
+    areaCapture[3]=deviceCapture[3] ;  //D device 4
+    areaCapture[4]=deviceCapture[5] ;  //E device 6
+    areaCapture[5]=deviceCapture[6] ;  //F device 7
+    areaCapture[6]=deviceCapture[8] ;  //G device 9
+    areaCapture[7]=deviceCapture[10] ;  //H device 11
+    areaCapture[8]=deviceCapture[9] ;  //I device 10
+    areaCapture[9]=deviceCapture[11] ;  //J device 12
+    areaCapture[10]=deviceCapture[12] ; //K device 13
+    areaCapture[11]=deviceCapture[14] ; //L device 15
+    areaCapture[12]=deviceCapture[15] ; //M device 16
+    areaCapture[13]=deviceCapture[16] ; //N device 17
+    areaCapture[14]=deviceCapture[17] ; //O device 18
+
+    for (var i = 0; i <= 14; i++) {
+        switch((areaCapture[i]/10).toFixed()){
+            case "0":
+                Colors[i]="#9375cd";
+                break;
+            case "1":
+                Colors[i]="#64b5f7";
+                break;
+            case "2":
+                Colors[i]="#4dd1e0";
+                break;
+            case "3":
+                Colors[i]="#4cb6ac";
+                break;
+            case "4":
+                Colors[i]="#81c685";
+                break;
+            case "5":
+                Colors[i]="#dde776";
+                break;
+            case "6":
+                Colors[i]="#ffd451";
+                break;
+            case "7":
+                Colors[i]="#feb74d";
+                break;
+            case "8":
+                Colors[i]="#ff8965";
+                break;
+            default:
+                Colors[i]="#ff8965";
+                break;
+        }
+    }
+
+    var retJson = {
+        "Labels": Labels,
+        "Colors": Colors,
+        "areaCapture" : areaCapture,
+    };
+    return retJson;
+}
+
+
 /**
  * @param {int} The month number, 0 based
  * @param {int} The year, not zero based, required to account for leap years

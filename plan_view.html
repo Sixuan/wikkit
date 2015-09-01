@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>猫头鹰商超客流分析</title>
+    <script type="text/javascript" src="script/jquery-1.11.3.min.js"></script>
+    <!--<script type="text/javascript" src="script/Chart.min.js"></script>-->
+    <script type="text/javascript" src="script/script.js"></script>
+    <!-- Color Code-->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <!--<script type="text/javascript" src="./script/jquery.maphilight.js"></script>-->
+<!--    <script type="text/javascript">$(function() {
+        $('.map').maphilight();
+    });</script>-->
+    <!-- Color Code End-->
+    <link rel="stylesheet" href="style/main.css"/>
+<!--    <script type="text/javascript">
+        function getColor(var id, )
+
+    </script>-->
+</head>
+<body>
+<header>
+    <h1>猫头鹰商超客流分析</h1>
+    <nav>
+        <ul>
+            <li id="day"><a href="day.html">按日统计</a></li>
+            <li id="week"><a href="week.html">按周统计</a></li>
+            <li id="month"><a href="month.html">按月统计</a></li>
+            <li id="plan_view" class="selected"><a href="plan_view.html">热力图</a></li>
+<!--            <li id="realtime"><a href="realtime.html">实景热力图</li> -->
+        </ul>
+    </nav>
+</header>
+
+
+<section class="clear">
+    <div style="width:1020px; height:auto;">
+        <svg  height="600px" width="1020px" style="position:absolute" class="not_display">
+            <polygon id="A" points="689,521 665,542 636,519 603,476 627,456 660,500" style="fill:#ffffff;stroke:#ffffff;stroke-width:1" class="not_display"/>
+            Sorry, your browser does not support inline SVG.
+        </svg>
+
+        <svg height="600px" width="1020px" style="position:absolute" class="not_display">
+            <polygon id="B" points="645,479 627,456 661,414 688,425" style="fill:#ffffff;stroke:#ffffff;stroke-width:1" class="not_display"/>
+            Sorry, your browser does not support inline SVG.
+        </svg>
+
+        <svg height="600px" width="1020px" style="position:absolute" class="not_display">
+            <polygon id="C" points="660,500 645,479 688,425 711,434" style="fill:#ffffff;stroke:#ffffff;stroke-width:1" class="not_display"/>
+            Sorry, your browser does not support inline SVG.
+        </svg>
+
+        <svg height="600px" width="1020px" style="position:absolute" class="not_display">
+            <polygon id="D" points="688,425 661,414 680,366 709,366" style="fill:#ffffff;stroke:#ffffff;stroke-width:1" class="not_display"/>
+            Sorry, your browser does not support inline SVG.
+        </svg>
+
+        <svg height="600px" width="1020px" style="position:absolute" class="not_display">
+            <polygon id="E" points="711,434 688,425 709,366 732,366" style="fill:#ffffff;stroke:#ffffff;stroke-width:1" class="not_display"/>
+            Sorry, your browser does not support inline SVG.
+        </svg>
+
+        <svg height="600px" width="1020px" style="position:absolute" class="not_display">
+            <polygon id="F" points="775,366 680,366 685,314 775,314" style="fill:#ffffff;stroke:#ffffff;stroke-width:1" class="not_display"/>
+            Sorry, your browser does not support inline SVG.
+        </svg>
+
+        <svg height="600px" width="1020px" style="position:absolute" class="not_display">
+            <polygon id="G" points="712,314 685,314 670,248 695,241" style="fill:#ffffff;stroke:#ffffff;stroke-width:1" class="not_display"/>
+            Sorry, your browser does not support inline SVG.
+        </svg>
+
+        <svg height="600px" width="1020px" style="position:absolute" class="not_display">
+            <polygon id="H" points="735,314 712,314 695,241 721,234" style="fill:#ffffff;stroke:#ffffff;stroke-width:1" class="not_display"/>
+            Sorry, your browser does not support inline SVG.
+        </svg>
+
+        <svg height="600px" width="1020px" style="position:absolute" class="not_display">
+            <polygon id="I" points="695,241 670,248 627,188 641,168" style="fill:#ffffff;stroke:#ffffff;stroke-width:1" class="not_display"/>
+            Sorry, your browser does not support inline SVG.
+        </svg>
+
+        <svg height="600px" width="1020px" style="position:absolute" class="not_display">
+            <polygon id="J" points="721,234 695,241 641,168 656,146" style="fill:#ffffff;stroke:#ffffff;stroke-width:1" class="not_display"/>
+            Sorry, your browser does not support inline SVG.
+        </svg>
+
+        <svg height="600px" width="1020px" style="position:absolute" class="not_display">
+            <polygon id="K" points="627,188 590,165 560,149 603,112 656,146" style="fill:#ffffff;stroke:#ffffff;stroke-width:1" class="not_display"/>
+            Sorry, your browser does not support inline SVG.
+        </svg>
+
+        <svg height="600px" width="1020px" style="position:absolute" class="not_display">
+            <polygon id="L" points="521,251 513,215 534,205 545,189 542,161 560,149 590,165 579,202 554,232" style="fill:#ffffff;stroke:#ffffff;stroke-width:1" class="not_display"/>
+            Sorry, your browser does not support inline SVG.
+        </svg>
+
+        <svg height="600px" width="1020px" style="position:absolute" class="not_display">
+            <polygon id="M" points="521,251 486,251 452,233 427,203 459,184 483,212 513,215" style="fill:#ffffff;stroke:#ffffff;stroke-width:1" class="not_display"/>
+            Sorry, your browser does not support inline SVG.
+        </svg>
+
+        <svg height="600px" width="1020px" style="position:absolute" class="not_display">
+            <polygon id="N" points="560,353 533,365 486,251 521,251" style="fill:#ffffff;stroke:#ffffff;stroke-width:1" class="not_display"/>
+            Sorry, your browser does not support inline SVG.
+        </svg>
+
+        <svg height="600px" width="1020px" style="position:absolute" class="not_display">
+            <polygon id="O" points="627,456 603,476 533,365 560,353" style="fill:#ffffff;stroke:#ffffff;stroke-width:1" class="not_display"/>
+            Sorry, your browser does not support inline SVG.
+        </svg>
+
+
+    <img class="map" src="../images/Floor_View.jpg" width="100%" usemap="#plan_view" style="display: none;z-index: -2">
+    <img class="spinner" src="../images/spinner.gif" width="100%" usemap="#plan_view" style="z-index: 100">
+    </div>
+
+
+</section>
+<div class="clear"></div>
+
+
+<script type="text/javascript">
+    $(function () {
+
+        var timestamp_now = (event.timeStamp / 1000).toFixed() ;//返回13位,毫秒级。只需要10位，做提取。
+        var client = "wikkit12345"; // 初始的客户id
+        var company = "1"  //初始的公司id
+        var url = "http://112.74.129.243:8080/api/heatmap/get?client_id=" + client + "&timestamp=" + timestamp_now ; //获取接口地址
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: "",
+            dataType: "json",
+            success: function (data) {
+                CountJson = data;
+                //console.log(CountJson);
+                $('.spinner').remove();
+                $('.map').fadeIn();
+                $('.not_display').css('z-index',0);
+                var AJSON = eval(CountJson);
+                var ChartJson = loadDeviceData(AJSON.data);
+                //console.log(AJSON);
+                console.log(ChartJson);
+                //alert(ChartJson.Labels[0]);
+                //alert(ChartJson.Colors);
+                //alert(ChartJson.Labels.length);
+                //alert("I am here. ");
+                for (var i=0; i<ChartJson.Labels.length; i++){
+                $(ChartJson.Labels[i]).css({ fill: ChartJson.Colors[i].toString() });
+                }
+            }
+        });
+
+
+
+    });
+
+
+</script>
+<style>
+
+    .not_display{
+        z-index: -1;
+    }
+    .now_display{
+        z-index: 1;
+    }
+</style>
+</body>
+</html>

@@ -119,18 +119,18 @@ function loadDayData(data) {
 function loadRealtimeData(data) {
     var infoX = [];
     var infoY = [];
-    var img;
-    for (var i = 1; i <= 18; i++) {
+    //var img;
+    //for (var i = 1; i <= 1; i++) {
         $.each(data, function (n, value) {
-            infoX.push(value.POSITION_X )
-            infoY.push(value.POSITION_Y )
+            infoX.push(value.POSITION_X );
+            infoY.push(value.POSITION_Y );
         });
-    }
-    img.push(value.SCENE.IMG)
+    //}
+    //img.push(value.SCENE.IMG)
     var retJson = {
-        "Labels": infoX,
-        "Colors": infoY,
-        "Img": img,
+        "X": infoX,
+        "Y": infoY,
+    //    "Img": img,
     };
     return retJson;
 }
@@ -302,11 +302,11 @@ function loadMonthDayData(data) {
     //console.log(last_month_day);
 
     for(var i= 0; i < this_month_day.length; i++){
-        Labels.push(this_month_day[i].getDate() + ' 日');
+        Labels.push(this_month_day[i].getDate());
     }
 
     for(var i= 0; i < last_month_day.length; i++){
-        LastLabels.push(last_month_day[i].getDate() + ' 日');
+        LastLabels.push(last_month_day[i].getDate());
     }
 /*
 

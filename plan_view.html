@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>猫头鹰商超客流分析</title>
+    <title>魔镜商超客流分析</title>
     <script type="text/javascript" src="script/jquery-1.11.3.min.js"></script>
     <!--<script type="text/javascript" src="script/Chart.min.js"></script>-->
     <script type="text/javascript" src="script/script.js"></script>
@@ -21,7 +21,7 @@
 </head>
 <body>
 <header>
-    <h1>猫头鹰商超客流分析</h1>
+    <h1>魔镜商超客流分析</h1>
     <nav>
         <ul>
             <li id="day"><a href="day.html">按日统计</a></li>
@@ -35,7 +35,22 @@
 
 
 <section class="clear">
-    <div style="width:1020px; height:auto;">
+
+    <div class="tab-container" style="margin: 30px auto">
+        <div class="tab clearfix width-40-percent left selected">
+            <i class="triangle"></i>
+
+            <a class="title" href="plan_view.html"  style="color:#ffffff;">平面热力分布图</a>
+        </div>
+        <div class="tab clearfix width-40-percent right">
+            <i class="triangle"></i>
+
+            <a class="title" href="realtime.html">实景热力分布图</a>
+        </div>
+        <span class="clear clearfix"></span>
+    </div>
+
+    <div style="width:1020px; height:auto; padding-bottom: 50px;">
         <svg  height="600px" width="1020px" style="position:absolute" class="not_display">
             <polygon id="A" points="689,521 665,542 636,519 603,476 627,456 660,500" style="fill:#ffffff;stroke:#ffffff;stroke-width:1" class="not_display"/>
             Sorry, your browser does not support inline SVG.

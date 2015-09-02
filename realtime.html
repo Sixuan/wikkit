@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>魔镜商超客流分析</title>
+    <script type="text/javascript" src="script/jquery-1.11.3.min.js"></script>
+    <!--<script type="text/javascript" src="script/Chart.min.js"></script>-->
+    <script type="text/javascript" src="script/script.js"></script>
+    <!-- Color Code-->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
+    <!--<script type="text/javascript" src="./script/jquery.maphilight.js"></script>-->
+    <!--    <script type="text/javascript">$(function() {
+            $('.map').maphilight();
+        });</script>-->
+    <!-- Color Code End-->
+    <link rel="stylesheet" href="style/main.css"/>
+    <!--    <script type="text/javascript">
+            function getColor(var id, )
+
+        </script>-->
+</head>
+<body>
+<header>
+    <h1>魔镜商超客流分析</h1>
+    <nav>
+        <ul>
+            <li id="day"><a href="day.html">按日统计</a></li>
+            <li id="week"><a href="week.html">按周统计</a></li>
+            <li id="month"><a href="month.html">按月统计</a></li>
+            <li id="plan_view" class="selected"><a href="plan_view.html">热力图</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+<section class="clear">
+    <div class="tab-container" style="margin: 30px auto">
+        <div class="tab clearfix width-40-percent left">
+            <i class="triangle"></i>
+
+            <a class="title" href="plan_view.html">平面热力分布图</a>
+        </div>
+        <div class="tab clearfix width-40-percent right selected">
+            <i class="triangle"></i>
+
+            <a class="title" href="realtime.html" style="color:#ffffff;">实景热力分布图</a>
+        </div>
+        <span class="clear clearfix"></span>
+    </div>
+
+    <div id="canvases" style="padding-bottom: 50px;">
+        <canvas id="canvas" width="1020" height="760" style="cursor: auto; background-image:url('./images/image1.png')" ></canvas>
+    </div>
+<!--
+    <h2>客流量(2015年8月3日星期一 ~ 2015年8月9日星期日)</h2>
+
+    <div id="time_account">
+        <dl class="width-40-percent">
+            <dt class="green">
+            <h1>今日</h1>
+            <i>(0点至现在)</i>
+            </dt>
+            <dd class="total-current">0人</dd>
+        </dl>
+        <dl class="width-40-percent">
+            <dt class="blue">
+            <h1>昨日</h1>
+            <i></i>
+            </dt>
+            <dd class="total-last">0人</dd>
+        </dl>
+    </div> -->
+</section>
+<div class="clear"></div>
+
+
+<script type="text/javascript">
+    $(function () {
+        var CountJson = {
+            "code": 200,
+            "status": "request_success",
+            "message": [],
+            "data": [
+                {
+                    "POSITION_X": 1,
+                    "POSITION_Y": 2,
+                    "POSITION_VALUE": 3,
+                    "TIME_CREATED": "2015-08-21 12:06:17",
+                    "DEVICE_ID": 1,
+                    "SCENE_IMG": "/var/www/wikkitImages/deviceScene/device_1_1440873770_.png"
+                },
+                {
+                    "POSITION_X": 1.1499999761581,
+                    "POSITION_Y": 2.25,
+                    "POSITION_VALUE": 5,
+                    "TIME_CREATED": "2015-08-22 12:36:05",
+                    "DEVICE_ID": 1,
+                    "SCENE_IMG": "/var/www/wikkitImages/deviceScene/device_1_1440873770_.png"
+                },
+                {
+                    "POSITION_X": 1.3500000238419,
+                    "POSITION_Y": 2.5499999523163,
+                    "POSITION_VALUE": 3,
+                    "TIME_CREATED": "2015-08-22 12:36:05",
+                    "DEVICE_ID": 1,
+                    "SCENE_IMG": "/var/www/wikkitImages/deviceScene/device_1_1440873770_.png"
+                },
+                {
+                    "POSITION_X": 2.5499999523163,
+                    "POSITION_Y": 4.25,
+                    "POSITION_VALUE": 8,
+                    "TIME_CREATED": "2015-08-22 12:36:05",
+                    "DEVICE_ID": 1,
+                    "SCENE_IMG": "/var/www/wikkitImages/deviceScene/device_1_1440873770_.png"
+                },
+                {
+                    "POSITION_X": 1.1499999761581,
+                    "POSITION_Y": 2.25,
+                    "POSITION_VALUE": 5,
+                    "TIME_CREATED": "2015-08-22 12:38:28",
+                    "DEVICE_ID": 1,
+                    "SCENE_IMG": "/var/www/wikkitImages/deviceScene/device_1_1440873770_.png"
+                },
+                {
+                    "POSITION_X": 1.3500000238419,
+                    "POSITION_Y": 2.5499999523163,
+                    "POSITION_VALUE": 3,
+                    "TIME_CREATED": "2015-08-22 12:38:28",
+                    "DEVICE_ID": 1,
+                    "SCENE_IMG": "/var/www/wikkitImages/deviceScene/device_1_1440873770_.png"
+                },
+                {
+                    "POSITION_X": 2.5499999523163,
+                    "POSITION_Y": 4.25,
+                    "POSITION_VALUE": 8,
+                    "TIME_CREATED": "2015-08-22 12:38:28",
+                    "DEVICE_ID": 1,
+                    "SCENE_IMG": "/var/www/wikkitImages/deviceScene/device_1_1440873770_.png"
+                },
+                {
+                    "POSITION_X": 1.1499999761581,
+                    "POSITION_Y": 2.25,
+                    "POSITION_VALUE": 5,
+                    "TIME_CREATED": "2015-08-22 12:39:20",
+                    "DEVICE_ID": 1,
+                    "SCENE_IMG": "/var/www/wikkitImages/deviceScene/device_1_1440873770_.png"
+                },
+                {
+                    "POSITION_X": 1.3500000238419,
+                    "POSITION_Y": 2.5499999523163,
+                    "POSITION_VALUE": 3,
+                    "TIME_CREATED": "2015-08-22 12:39:20",
+                    "DEVICE_ID": 1,
+                    "SCENE_IMG": "/var/www/wikkitImages/deviceScene/device_1_1440873770_.png"
+                },
+                {
+                    "POSITION_X": 2.5499999523163,
+                    "POSITION_Y": 4.25,
+                    "POSITION_VALUE": 8,
+                    "TIME_CREATED": "2015-08-22 12:39:20",
+                    "DEVICE_ID": 1,
+                    "SCENE_IMG": "/var/www/wikkitImages/deviceScene/device_1_1440873770_.png"
+                },
+                {
+                    "POSITION_X": 1.1499999761581,
+                    "POSITION_Y": 2.25,
+                    "POSITION_VALUE": 5,
+                    "TIME_CREATED": "2015-08-22 12:47:23",
+                    "DEVICE_ID": 1,
+                    "SCENE_IMG": "/var/www/wikkitImages/deviceScene/device_1_1440873770_.png"
+                },
+                {
+                    "POSITION_X": 1.3500000238419,
+                    "POSITION_Y": 2.5499999523163,
+                    "POSITION_VALUE": 3,
+                    "TIME_CREATED": "2015-08-22 12:47:23",
+                    "DEVICE_ID": 1,
+                    "SCENE_IMG": "/var/www/wikkitImages/deviceScene/device_1_1440873770_.png"
+                },
+                {
+                    "POSITION_X": 2.5499999523163,
+                    "POSITION_Y": 4.25,
+                    "POSITION_VALUE": 8,
+                    "TIME_CREATED": "2015-08-22 12:47:23",
+                    "DEVICE_ID": 1,
+                    "SCENE_IMG": "/var/www/wikkitImages/deviceScene/device_1_1440873770_.png"
+                },
+                {
+                    "POSITION_X": 1.1499999761581,
+                    "POSITION_Y": 2.25,
+                    "POSITION_VALUE": 5,
+                    "TIME_CREATED": "2015-08-22 12:47:25",
+                    "DEVICE_ID": 1,
+                    "SCENE_IMG": "/var/www/wikkitImages/deviceScene/device_1_1440873770_.png"
+                },
+                {
+                    "POSITION_X": 1.3500000238419,
+                    "POSITION_Y": 2.5499999523163,
+                    "POSITION_VALUE": 3,
+                    "TIME_CREATED": "2015-08-22 12:47:25",
+                    "DEVICE_ID": 1,
+                    "SCENE_IMG": "/var/www/wikkitImages/deviceScene/device_1_1440873770_.png"
+                }
+            ]
+        };
+
+        var timestamp_now = (event.timeStamp / 1000).toFixed() ;//返回13位,毫秒级。只需要10位，做提取。
+        var client = "wikkit12345"; // 初始的客户id
+        var company = "1"  //初始的公司id
+        var url = "http://112.74.129.243:8080/api/heatmap/get?client_id=" + client + "&timestamp=" + timestamp_now  + "&device_id=1"; //获取接口地址
+                   http://112.74.129.243:8080/api/heatmap/get?client_id=wikkit12345&timestamp=1441056079&device_id=2
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: "",
+            dataType: "json",
+            success: function (data) {
+                CountJson = data;
+                console.log(CountJson);
+
+                var AJSON = eval(CountJson);
+                var ChartJson = loadRealtimeData(AJSON.data);
+                console.log(AJSON);
+                console.log(ChartJson);
+                //alert(ChartJson.Labels[0]);
+                //alert(ChartJson.Colors);
+                //alert(ChartJson.Labels.length);
+                //alert("I am here. ");
+                //for (var i=0; i<ChartJson.Labels.length; i++){
+                //    $(ChartJson.Labels[i]).css({ fill: ChartJson.Colors[i].toString() });}
+                var zoom1=[[]];
+                var zoomX=[];
+                var zoom2=[[]];
+                var centerY=0;
+
+                for (var i=0; i<ChartJson.X.length; i++){
+                    centerY+=ChartJson.Y[i];
+                    zoomX[i]=ChartJson.X[i];
+                }
+
+                var scale=1.0;
+                scale = 1020/(Math.min.apply(null, zoomX) + Math.max.apply(null, zoomX));
+                console.log(scale);
+                console.log(zoomX);
+                centerY=centerY/ChartJson.Y.length;
+
+                for (var i= 0, n=0, m=0; i<ChartJson.X.length; i++){
+                    if(ChartJson.Y[i]>centerY){
+                        zoom1[m]=[ChartJson.X[i]*scale,350+ChartJson.Y[i]/2];
+                        m+=1;
+                       }
+                    else{
+                        zoom2[n]=[ChartJson.X[i]*scale,350+ChartJson.Y[i]/2];
+                        n+=1;
+                    }
+                }
+
+                zoom1.sort(function(a,b){return a[0]-b[0]});
+                zoom2.sort(function(a,b){return b[0]-a[0]});
+
+                console.log(zoom1);
+
+                var canvas = $("#canvas")[0];
+                var c2 = canvas.getContext('2d');
+                c2.fillStyle = 'orange'; //#aeeee0
+                c2.globalAlpha = 0.7;
+                c2.beginPath();
+                c2.moveTo(zoom1[0][0],zoom1[0][1]);
+                for (var i=0; i<zoom1.length; i++){
+                c2.lineTo(zoom1[i][0],zoom1[i][1]);
+                }
+                for (var i=0; i<zoom2.length; i++){
+                    c2.lineTo(zoom2[i][0],zoom2[i][1]);
+                }
+                c2.closePath();
+                c2.fill();
+            }
+        });
+
+
+
+    });
+
+
+</script>
+
+</body>
+</html>

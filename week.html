@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>魔镜商超客流分析</title>
+    <title>云创商超客流分析</title>
     <script type="text/javascript" src="script/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="script/Chart.min.js"></script>
     <script type="text/javascript" src="script/script.js"></script>
@@ -10,7 +10,7 @@
 </head>
 <body>
 <header>
-    <h1>魔镜商超客流分析</h1>
+    <h1>云创商超客流分析</h1>
     <nav>
         <ul>
             <li id="day"><a href="day.html">按日统计</a></li>
@@ -113,6 +113,58 @@
         var url = "http://112.74.129.243:8080/api/info/get?client_id=" + client + "&type=week&company_id=" + company; //获取接口地址
         $.getJSON(url, function (data) {
             CountJson = data;
+
+            CountJson = {
+                "code": 200,
+                "status": "request_success",
+                "message": [],
+                "data": [
+                    {
+                        "TOTAL_COUNT": 5895,
+                        "DATE_TIME": "2015-08-24"
+                    },
+                    {
+                        "TOTAL_COUNT": 6108,
+                        "DATE_TIME": "2015-08-25"
+                    },
+                    {
+                        "TOTAL_COUNT": 6860,
+                        "DATE_TIME": "2015-08-26"
+                    },
+                    {
+                        "TOTAL_COUNT": 7320,
+                        "DATE_TIME": "2015-08-27"
+                    },
+                    {
+                        "TOTAL_COUNT": 9234,
+                        "DATE_TIME": "2015-08-28"
+                    },
+                    {
+                        "TOTAL_COUNT": 21647,
+                        "DATE_TIME": "2015-08-29"
+                    },
+                    {
+                        "TOTAL_COUNT": 19876,
+                        "DATE_TIME": "2015-08-30"
+                    },
+                    {
+                        "TOTAL_COUNT": 7201,
+                        "DATE_TIME": "2015-08-31"
+                    },
+                    {
+                        "TOTAL_COUNT": 5800,
+                        "DATE_TIME": "2015-09-01"
+                    },
+                    {
+                        "TOTAL_COUNT": 7434,
+                        "DATE_TIME": "2015-09-02"
+                    },
+                    {
+                        "TOTAL_COUNT": 5921,
+                        "DATE_TIME": "2015-09-03"
+                    }
+                ]
+            }
 
             var datasCurrent = [];
             var datasLast = [];
